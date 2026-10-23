@@ -1,0 +1,14 @@
+.vs/
+bin/
+Exports/
+
+*.exe
+*.lib
+*.dll
+
+*.user
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
+*.pch
