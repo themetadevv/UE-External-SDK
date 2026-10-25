@@ -1,10 +1,23 @@
 #pragma once
 
-#include "Utils/Common.h"
-#include "Utils/Process/WindowsProcessUtil.h"
+#include <string>
 
-namespace Utils {
-	class WindowsProcessManager {
+#include <windows.h>
+#include <TlHelp32.h>
+
+#include "Utils/Common.h"
+
+namespace Utils::Windows {
+	// not applicable for games protected by kernel level anticheat,
+	// using this will result in instant ban.
+
+	// kernel level ac : EAC, BE, etc.
+	// user mode ac: VAC, etc. (safe to use but consider using an IOCTL driver for extra safety)
+
+	DWORD GetProcessIDByName(std::wstring_view process_name);
+	uintptr_t GetModuleBaseAddress(std::wstring_view module_name, DWORD pid);
+
+	class ProcessManager {
 	public:
 		enum class Access : DWORD {
 			None  = 0,
@@ -23,9 +36,9 @@ namespace Utils {
 		HANDLE m_ProcessHandle = nullptr;
 
 	public:
-		WindowsProcessManager() = default;
-		WindowsProcessManager(std::wstring_view process_name, Access access);
-		~WindowsProcessManager();
+		ProcessManager() = default;
+		ProcessManager(std::wstring_view process_name, Access access);
+		~ProcessManager();
 
 	private:
 		// private methods

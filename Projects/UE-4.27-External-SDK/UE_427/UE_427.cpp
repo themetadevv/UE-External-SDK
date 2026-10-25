@@ -11,14 +11,14 @@ namespace UE {
 	UE_427::UE_427(std::wstring_view process_name) :
 		m_PM (
 			process_name, 
-			Utils::WindowsProcessManager::Access::Read | Utils::WindowsProcessManager::Access::Write
+			Utils::Windows::ProcessManager::Access::Read | Utils::Windows::ProcessManager::Access::Write
 		)
 	{
-		m_Base = Utils::GetModuleBaseAddress(process_name, m_PM.GetProcessID());
+		m_Base = Utils::Windows::GetModuleBaseAddress(process_name, m_PM.GetProcessID());
 	}
 
 	UE_427::~UE_427() {
-
+		
 	}
 
 	bool UE_427::ResolvePointer(uintptr_t start, uintptr_t& store, std::initializer_list<uintptr_t> offsets) {
@@ -109,7 +109,7 @@ namespace UE {
 
 		m_EngineData.OwningGameInstance = Read<uintptr_t>(m_EngineData.GWorld + Offsets::OwningGameInstance);
 		if (!m_EngineData.OwningGameInstance)
-			printf("Failed to read 'EngineData::PersistentLevel' address.\n");
+			printf("Failed to read 'EngineData::OwningGameInstance' address.\n");
 		
 		if (!ValidPointers())
 			return false;

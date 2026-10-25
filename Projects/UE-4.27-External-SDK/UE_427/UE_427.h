@@ -4,18 +4,17 @@
 #include <vector>
 
 // Externals
-#include <Utils/Process/WindowsProcessManager.h>
+#include <Utils/Windows/ProcessManager.h>
 
 // Types
 #include "UE_427/Structs/FVector.h"
 #include "UE_427/Structs/TArray.h"
 
 namespace UE {
-	using UnrealOffset = uintptr_t;
-
 	class UE_427 {
 	private:
-		Utils::WindowsProcessManager m_PM;
+		Utils::Windows::ProcessManager m_PM;
+
 		uintptr_t m_Base = 0;
 
 		struct PawnData {
@@ -83,7 +82,7 @@ namespace UE {
 				return false;
 
 			// reads the last offset in the list to return a valid usable type
-			store = m_PM.Read<T>(current + *it); 
+			store = m_PM.Read<T>(current + *it);
 			return true;
 		}
 

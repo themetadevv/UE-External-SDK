@@ -1,4 +1,4 @@
-workspace "UE_SDK"
+workspace "Cpp-External-Bases"
     architecture "x64"
     configurations { "Debug", "Release" }
     startproject "SampleUsage"
@@ -14,9 +14,13 @@ Projects = {
 	UE_427_EXTERNAL_SDK = WorkspaceLoc.. "Projects/UE-4.27-External-SDK"
 }
 
+Externals = {
+    IMGUI = ExternalsDir.. "imgui"
+}
+
 -- External Libraries
 group "Externals"
-
+    include "Externals/imgui"
 group ""
 
 -- Projects

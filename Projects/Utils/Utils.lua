@@ -28,6 +28,7 @@ project "Utils"
 	includedirs {
         PrjLoc,
         PrjLoc.. "Private",
+        Externals.IMGUI
 	}
 
     -- kind
