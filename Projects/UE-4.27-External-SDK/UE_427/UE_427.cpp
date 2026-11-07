@@ -1,6 +1,9 @@
 
 #include "pch.h"
 
+// Externals
+#include <Utils/Log.h>
+
 // Globals
 #include "UE_427/Globals/Globals.h"
 #include "UE_427/Globals/Offsets.h"
@@ -41,8 +44,10 @@ namespace UE {
 			{ Offsets::LocalPlayers, 0, Offsets::PlayerController, Offsets::AcknowledgedPawn }
 		);
 
-		if (!pawn)
+		if (!pawn) {
+			Utils::Log(L"Failed to get local player pawn address: {}\n", pawn);
 			return false;
+		}		
 
 		// reading lp root component
 		m_EngineData.LocalPlayer.RootComponent = m_PM.Read<uintptr_t>(
@@ -101,15 +106,15 @@ namespace UE {
 		// engine ptrs
 		m_EngineData.GWorld = Read<uintptr_t>(m_Base + Offsets::GWorld);
 		if (!m_EngineData.GWorld)
-			printf("Failed to read 'EngineData::GWorld' address.\n");
+			Utils::Log(L"Failed to read 'EngineData::GWorld' address: {}\n", m_EngineData.GWorld);
 
 		m_EngineData.PersistentLevel = Read<uintptr_t>(m_EngineData.GWorld + Offsets::PersistentLevel);
 		if (!m_EngineData.PersistentLevel)
-			printf("Failed to read 'EngineData::PersistentLevel' address.\n");
+			Utils::Log(L"Failed to read 'EngineData::PersistentLevel' address.\n");
 
 		m_EngineData.OwningGameInstance = Read<uintptr_t>(m_EngineData.GWorld + Offsets::OwningGameInstance);
 		if (!m_EngineData.OwningGameInstance)
-			printf("Failed to read 'EngineData::OwningGameInstance' address.\n");
+			Utils::Log(L"Failed to read 'EngineData::OwningGameInstance' address.\n");
 		
 		if (!ValidPointers())
 			return false;

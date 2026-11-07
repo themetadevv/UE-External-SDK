@@ -8,6 +8,8 @@ project "Sample-Project"
 	targetdir ("bin/builds/%{cfg.system}_%{cfg.buildcfg}")
     objdir ("bin/intermediates/%{cfg.system}_%{cfg.buildcfg}")
 	
+    characterset "MBCS"
+
 	PrjLoc = "%{prj.location}/"
 
     -- copies .exe to exports dir

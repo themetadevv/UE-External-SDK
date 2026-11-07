@@ -8,6 +8,8 @@ project "UE-4.27-External-SDK"
 	targetdir ("bin/builds/%{cfg.buildcfg}_%{cfg.system}")
     objdir ("bin/intermediates/%{cfg.buildcfg}_%{cfg.system}")
 	
+    characterset "MBCS"
+
 	PrjLoc = "%{prj.location}/"
 
     pchheader "pch.h"
@@ -31,12 +33,9 @@ project "UE-4.27-External-SDK"
         Projects.Utils
 	}
 
-    -- kind
-    filter "kind:StaticLib"
-        defines {
-            "STATIC_BUILD"
-        }
-    filter {}
+    links {
+        "Utils"
+    }
 
     -- platform
     filter "system:windows"

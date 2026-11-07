@@ -1,6 +1,7 @@
 
 #include "pch.h"
 
+#include "Utils/Log.h"
 #include "Utils/Windows/ProcessManager.h"
 
 namespace Utils::Windows {
@@ -53,13 +54,13 @@ namespace Utils::Windows {
 	{
 		m_ProcessID = GetProcessIDByName(process_name);
 		if (m_ProcessID == 0) {
-			std::cout << "Invalid Process ID returning!\n";
+			Log(L"Failed to get PID('{}'): {}\n", process_name, m_ProcessID);
 			return;
 		}
 
 		m_ProcessHandle = OpenProcess(static_cast<DWORD>(access), FALSE, m_ProcessID);
 		if (m_ProcessHandle == NULL) {
-			std::cout << "Invalid Process Handle returning!\n";
+			Log(L"Failed to get ProcessHandle('{}'): {}\n", process_name, m_ProcessHandle);
 			return;
 		}
 	}

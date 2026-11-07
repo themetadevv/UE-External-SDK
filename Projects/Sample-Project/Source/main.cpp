@@ -3,7 +3,9 @@
 #include <UE_427/Globals/Offsets.h>
 
 int main() {
-	UE::UE_427 TestGame(L"UnrealTestProject-Win64-Shipping.exe");
+
+
+	UE::UE_427 TestGame(L"UE4Game-Win64-Shipping.exe");
 
 	const auto& lp = TestGame.GetLocalPlayerData();
 

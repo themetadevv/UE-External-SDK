@@ -7,6 +7,8 @@ project "Utils"
 
 	targetdir ("bin/builds/%{cfg.buildcfg}_%{cfg.system}")
     objdir ("bin/intermediates/%{cfg.buildcfg}_%{cfg.system}")
+
+    characterset "MBCS"
 	
 	PrjLoc = "%{prj.location}/"
 
@@ -30,13 +32,6 @@ project "Utils"
         PrjLoc.. "Private",
         Externals.IMGUI
 	}
-
-    -- kind
-    filter "kind:StaticLib"
-        defines {
-            "STATIC_BUILD"
-        }
-    filter {}
 
     -- platform
     filter "system:windows"

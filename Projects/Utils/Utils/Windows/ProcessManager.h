@@ -12,7 +12,7 @@ namespace Utils::Windows {
 	// using this will result in instant ban.
 
 	// kernel level ac : EAC, BE, etc.
-	// user mode ac: VAC, etc. (safe to use but consider using an IOCTL driver for extra safety)
+	// user mode ac: VAC, etc. (safe to use but consider using your own driver for extra safety)
 
 	DWORD GetProcessIDByName(std::wstring_view process_name);
 	uintptr_t GetModuleBaseAddress(std::wstring_view module_name, DWORD pid);
